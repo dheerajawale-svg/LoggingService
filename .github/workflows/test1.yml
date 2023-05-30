@@ -20,11 +20,11 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: |
-          dotnet restore LoggingService\Natus.Logging.Service\Natus.Logging.Service.csproj
-          dotnet restore LoggingService\UnitTest\UnitTest.csproj
+          dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
+          dotnet restore UnitTest\UnitTest.csproj
     - name: Build
       run: |
-          dotnet build --configuration Release --no-restore LoggingService\Natus.Logging.Service\
-          dotnet build --configuration Release --no-restore LoggingService\UnitTest\UnitTest.csproj
+          dotnet build --configuration Release --no-restore Natus.Logging.Service\
+          dotnet build --configuration Release --no-restore UnitTest\
     - name: Test
-      run: dotnet test LoggingService\UnitTest\UnitTest.csproj
+      run: dotnet test UnitTest\UnitTest.csproj
