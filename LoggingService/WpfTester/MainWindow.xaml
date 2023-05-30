@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfTester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTester"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="252" />
+        </Grid.RowDefinitions>
+
+        <!--<Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>-->
+
+        <!--info-->
+        <TextBlock Height="20" HorizontalAlignment="Left" Margin="50,20,0,0" x:Name ="lblInfoInput" VerticalAlignment="Top" Width="247" Text="Info Content" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="150,20,0,0" Name="txtInfoContent" VerticalAlignment="Top" Width="222" />
+        <Button Content="Info" Height="23" HorizontalAlignment="Left" Margin="400,20,0,0" Name="btnInfoSubmit" VerticalAlignment="Top" Width="70" Click="btnInfoSubmit_Click" />
+        <TextBlock Height="20" HorizontalAlignment="Left" Margin="500,20,0,0" x:Name ="lblInfoConfirm" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+
+        <!--debug-->
+        <TextBlock Text="Debug Content" x:Name ="lblDebugInput" Margin="50,50,0,0" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="247" />
+        <TextBox Name="txtDebugContent" Margin="150,50,0,0" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="222" />
+        <Button Content="Debug" Click="btnDebugSubmit_Click" Margin="400,50,0,0" Name="btnDebugSubmit" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" />
+        <TextBlock x:Name ="lblDebugConfirm" Margin="500,50,0,0" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+
+        <!--Warning-->
+        <TextBlock Text="Warning Content" Margin="50,80,0,0" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="247" />
+        <TextBox Name="txtWarningContent" Margin="150,80,0,0" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="222" />
+        <Button Content="Warning" Click="btnWarningSubmit_Click" Margin="400,80,0,0" Name="btnWarningSubmit" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" />
+        <TextBlock x:Name ="lblWarningConfirm" Margin="500,80,0,0" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+
+        <!--Error-->
+        <TextBlock Text="Error Content" Margin="50,110,0,0" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="247" />
+        <TextBox Name="txtErrorContent" Margin="150,110,0,0" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="222" />
+        <Button Content="Error" Click="btnErrorSubmit_Click" Margin="400,110,0,0" Name="btnErrorSubmit" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" />
+        <TextBlock x:Name ="lblErrorConfirm" Margin="500,110,0,0" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+
+        <!--Fatal-->
+        <TextBlock Text="Fatal Content" Margin="50,140,0,0" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="247" />
+        <TextBox Name="txtFatalContent" Margin="150,140,0,0" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="222" />
+        <Button Content="Fatal" Click="btnFatalSubmit_Click" Margin="400,140,0,0" Name="btnFatalSubmit" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" />
+        <TextBlock x:Name ="lblFatalConfirm" Margin="500,140,0,0" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+
+        <!--<Grid Margin="50,180,0,0" Background="Azure">
+        <TextBlock Text="User Action" Margin="0,0,0,0" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="247" />
+        <TextBox Name="txtUAContent" Margin="120,0,0,0" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="222" />
+        <Button Content="User Action" Click="btnUserActionlSubmit_Click" Margin="400,140,0,0" Name="btnUserActionSubmit" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" />
+        <TextBlock x:Name ="lblUserActionConfirm" Margin="500,140,0,0" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="247"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+    </Grid>-->
+    </Grid>
+</Window>

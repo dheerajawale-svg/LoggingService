@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="NatusLoggingAPI" 
+			 Language="1033" Version="1.0.0.0" 
+			 Manufacturer="Natus" UpgradeCode="bc6dbc1b-5622-4ffe-97f9-7129b4e5bdc3">
+		<Package InstallerVersion="200" 
+				 Compressed="yes" 
+				 InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="NatusLoggingAPI" Level="1">
+			<!-- heat references -->
+			<ComponentGroupRef Id="NatusLoggingService" />
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="NatusLoggingAPI" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			 <Component Id="ProductComponent"> 
+				 <!--TODO: Insert files, registry keys, and other resources here.-->
+				 <File Id="LoggingServiceEXE"
+					   Name="Natus.Logging.Service.exe"
+					   DiskId="1"
+					   Source="$(var.Natus.Logging.Service.TargetDir)\Natus.Logging.Service.exe"
+					   Vital="yes"
+					   KeyPath="yes" />
+
+				 <ServiceInstall Id="ServiceInstaller"
+								 Type="ownProcess"
+								 Vital="yes"
+								 Name="Natus.Logging.Service"
+								 DisplayName="Natus Logging Service"
+								 Description="Natus Logging Service in .NET6 with WiX toolset"
+								 Start="auto"
+								 Account="LocalSystem"
+								 ErrorControl="normal" />
+
+				 <ServiceControl Id="StartService"
+								 Name="Natus.Logging.Service"
+								 Start="install"
+								 Wait="no" />
+
+				 <ServiceControl Id="StopService"
+								 Name="Natus.Logging.Service"
+								 Stop="uninstall"
+								 Remove="uninstall"
+								 Wait="yes" />
+			 </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
