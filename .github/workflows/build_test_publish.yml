@@ -53,7 +53,7 @@ jobs:
         id: create_releae
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: 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
         with:
           tag_name: ${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
@@ -67,7 +67,7 @@ jobs:
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: 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
         with:
           upload_url: ${{ steps.create_releae.outputs.upload_url }}
           asset_path: ./site.zip
