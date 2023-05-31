@@ -32,15 +32,18 @@ jobs:
           dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
           nuget restore ServiceSetupProject\ServiceSetupProject.wixproj
     
-    - name: Build Projects
-      run: |
-          dotnet build --configuration Release --no-restore Natus.Logging.Service\
-          dotnet build --configuration Release --no-restore ServiceSetupProject\
+    - name: Build Service
+      run: dotnet build --configuration Release --no-restore Natus.Logging.Service\
 
-    - name: Publish files
-      run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
-    - name: Upload Build Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: Logging_Service
-        path: D:\a\LoggingService\LoggingService\release\
+    - name: Build Setup
+      run: |
+        wix\tools\candle.exe Product.wxs -o obj\ -ext WixUtilExtension -ext WixUIExtension
+        wix\tools\light.exe obj\*.wixobj -o bin\Installer.msi -ext WixUtilExtension -ext WixUIExtension -dWixUILicenseRtf="License.rtf"
+              
+    # - name: Publish files
+    #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
+    # - name: Upload Build Artifact
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: Logging_Service
+    #     path: D:\a\LoggingService\LoggingService\release\
