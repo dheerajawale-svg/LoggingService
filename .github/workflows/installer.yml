@@ -35,7 +35,7 @@ jobs:
     - name: Build Projects
       run: |
           dotnet build --configuration Release --no-restore Natus.Logging.Service\
-          msbuild build --configuration Release --no-restore ServiceSetupProject\
+          dotnet build --configuration Release --no-restore ServiceSetupProject\
 
     - name: Publish files
       run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
