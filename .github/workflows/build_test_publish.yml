@@ -13,9 +13,9 @@ jobs:
 
     steps:
     - name: Checkout branch
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
     - name: Setup DotNET6.0
-    - uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
     - name: Restore Packages/Dependencies
@@ -30,8 +30,8 @@ jobs:
       run: dotnet test UnitTest\UnitTest.csproj
     - name: Publish files
       run: dotnet publish Natus.Logging.Service\Natus.Logging.Service.csproj -c Release -o release -nologo
-    - name: Upload Build Artifacts
-    - uses: actions/upload-artifact@v3
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v3
       with:
-        name: Logging-Service
+        name: Logging_Service
         path: D:\a\LoggingService\LoggingService\release\
