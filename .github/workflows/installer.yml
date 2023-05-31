@@ -39,9 +39,9 @@ jobs:
 
     - name: Build Setup
       run: |
-           ls
-           candle.exe -v -ext WixUtilExtension -ext WixUIExtension %wixprojdir%/*.wxs -o %wixprojdir%\
-           light.exe %wixprojdir%\*.wixobj -o %wixprojdir%\Installer.msi -ext WixUtilExtension -ext WixUIExtension 
+           ls ServiceSetupProject/
+           candle.exe -v -ext WixUtilExtension -ext WixUIExtension ServiceSetupProject/*.wxs -o ServiceSetupProject\
+           light.exe ServiceSetupProject\*.wixobj -o ServiceSetupProject\Installer.msi -ext WixUtilExtension -ext WixUIExtension 
     # - name: Publish files
     #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
     # - name: Upload Build Artifact
