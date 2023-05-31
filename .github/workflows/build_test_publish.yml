@@ -13,21 +13,26 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Checkout branch
     - uses: actions/checkout@v3
-    - name: Setup .NET
+    - name: Setup DotNET6.0
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
+    - name: Restore Packages/Dependencies
       run: |
           dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
           dotnet restore UnitTest\UnitTest.csproj
-    - name: Build
+    - name: Build Projects
       run: |
           dotnet build --configuration Release --no-restore Natus.Logging.Service\
           dotnet build --configuration Release --no-restore UnitTest\
-    - name: Test
+    - name: Test Project
       run: dotnet test UnitTest\UnitTest.csproj
     - name: Publish files
       run: dotnet publish Natus.Logging.Service\Natus.Logging.Service.csproj -c Release -o release -nologo
-      
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Logging-Service
+        path: D:\a\LoggingService\LoggingService\release\
