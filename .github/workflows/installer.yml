@@ -33,7 +33,6 @@ jobs:
     - name: Restore Packages/Dependencies
       run: |
           dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
-          nuget restore ServiceSetupProject\ServiceSetupProject.wixproj
     
     - name: Build Service
       run: dotnet build --configuration Release --no-restore Natus.Logging.Service\
