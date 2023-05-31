@@ -20,18 +20,22 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.3
 
+    - name: Set path for candle and light
+      run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
+      shell: bash
+
     - name: Setup NuGet.exe for use with actions
       uses: NuGet/setup-nuget@v1.2.0
 
     - name: Restore Packages/Dependencies
       run: |
           dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
-          dotnet restore ServiceSetupProject\ServiceSetupProject.wixproj
+          nuget restore ServiceSetupProject\ServiceSetupProject.wixproj
     
     - name: Build Projects
       run: |
           dotnet build --configuration Release --no-restore Natus.Logging.Service\
-          dotnet build --configuration Release --no-restore ServiceSetupProject\
+          msbuild build --configuration Release --no-restore ServiceSetupProject\
 
     - name: Publish files
       run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
