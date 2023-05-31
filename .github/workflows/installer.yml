@@ -38,8 +38,9 @@ jobs:
       run: dotnet build --configuration Release --no-restore Natus.Logging.Service\
 
     - name: Build Setup
-      run: ls
-           candle.exe -v -ext WixUtilExtension -ext WixUIExtension %wixprojdir%/*.wxs -out %wixprojdir%\
+      run: |
+           ls
+           candle.exe -v -ext WixUtilExtension -ext WixUIExtension %wixprojdir%/*.wxs -o %wixprojdir%\
            light.exe %wixprojdir%\*.wixobj -o %wixprojdir%\Installer.msi -ext WixUtilExtension -ext WixUIExtension 
     # - name: Publish files
     #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
