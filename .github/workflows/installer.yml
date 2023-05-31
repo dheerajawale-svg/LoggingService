@@ -37,8 +37,8 @@ jobs:
 
     - name: Build Setup
       run: |
-        ${{ github.workspace }}\tools\candle.exe Product.wxs -o obj\ -ext WixUtilExtension -ext WixUIExtension
-        ${{ github.workspace }}\tools\light.exe obj\*.wixobj -o bin\Installer.msi -ext WixUtilExtension -ext WixUIExtension -dWixUILicenseRtf="License.rtf"
+        candle.exe Product.wxs -o obj\ -ext WixUtilExtension -ext WixUIExtension
+        light.exe obj\*.wixobj -o bin\Installer.msi -ext WixUtilExtension -ext WixUIExtension -dWixUILicenseRtf="License.rtf"
               
     # - name: Publish files
     #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
