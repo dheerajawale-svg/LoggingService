@@ -37,11 +37,16 @@ jobs:
     - name: Build Service
       run: dotnet build --configuration Release --no-restore Natus.Logging.Service\
 
+    - name: Publish
+      run: |
+           dotnet publish Natus.Logging.Service\Natus.Logging.Service.csproj -c Release -o /lic_publish --sc --nologo
+
     - name: Build Setup
       run: |
-           ls ServiceSetupProject/
-           candle.exe -v -ext WixUtilExtension -ext WixUIExtension ServiceSetupProject/*.wxs -o ServiceSetupProject\
-           light.exe ServiceSetupProject\*.wixobj -o ServiceSetupProject\Installer.msi -ext WixUtilExtension -ext WixUIExtension 
+           ls /lic_publish/
+           heat.exe dir /lic_publish -g1 -gg -sfrag -srd -dr INSTALLFOLDER -cg liccomp -o ServiceSetupProject\ComponentsGenerated.wxs -var "env.WIX_PUBLISH_DIR"
+           candle.exe -v -ext WixUIExtension ServiceSetupProject/*.wxs -o ServiceSetupProject\
+           light.exe -o ServiceSetupProject\Installer.msi ServiceSetupProject\*.wixobj -ext WixUIExtension 
     # - name: Publish files
     #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
     # - name: Upload Build Artifact
