@@ -15,38 +15,46 @@ jobs:
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
+      
     - name: Setup DotNET6.0
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
   
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.3
+    - name: Print Dir
+      run: echo ${{ github.workspace }}
 
-    - name: Set path for candle and light
-      run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
-      shell: bash
+    # - name: Add msbuild to PATH
+    #   uses: microsoft/setup-msbuild@v1.3
 
-    - name: Setup NuGet.exe for use with actions
-      uses: NuGet/setup-nuget@v1.2.0
+    # - name: Set path for candle and light
+    #   run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
+    #   shell: bash
 
-    - name: Restore Packages/Dependencies
-      run: |
-          dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
+    # - name: Setup NuGet.exe for use with actions
+    #   uses: NuGet/setup-nuget@v1.2.0
+
+    # - name: Restore Packages/Dependencies
+    #   run: |
+    #       dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
     
-    - name: Build Service
-      run: dotnet build --configuration Release --no-restore Natus.Logging.Service\
+    # - name: Build Service
+    #   run: dotnet build --configuration Release --no-restore Natus.Logging.Service\
 
-    - name: Publish
-      run: |
-           dotnet publish Natus.Logging.Service\Natus.Logging.Service.csproj -c Release -o /lic_publish --sc --nologo
+    # - name: Publish
+    #   run: |
+    #        dotnet publish Natus.Logging.Service\Natus.Logging.Service.csproj -c Release -o /lic_publish --sc --nologo
 
-    - name: Build Setup
-      run: |
-           ls /lic_publish/
-           heat.exe dir /lic_publish -g1 -gg -sfrag -srd -dr INSTALLFOLDER -cg liccomp -o ServiceSetupProject\ComponentsGenerated.wxs -var "env.WIX_PUBLISH_DIR"
-           candle.exe -v -ext WixUIExtension ServiceSetupProject/*.wxs -o ServiceSetupProject\
-           light.exe -o ServiceSetupProject\Installer.msi ServiceSetupProject\*.wixobj -ext WixUIExtension 
+    # - name: Build Setup
+    #   run: |
+    #        ls /lic_publish/
+    #        heat.exe dir /lic_publish -g1 -gg -sfrag -srd -dr INSTALLFOLDER -cg liccomp -o ServiceSetupProject\ComponentsGenerated.wxs -var "env.WIX_PUBLISH_DIR"
+    #        candle.exe -v -ext WixUIExtension ServiceSetupProject/*.wxs -o ServiceSetupProject\
+    #        light.exe -o ServiceSetupProject\Installer.msi ServiceSetupProject\*.wixobj -ext WixUIExtension
+
+
+
+
     # - name: Publish files
     #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
     # - name: Upload Build Artifact
