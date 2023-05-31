@@ -8,6 +8,9 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      WIX_PUBLISH_DIR: /lic_publish
+      wixprojdir: ${{ github.workspace }}\ServiceSetupProject
 
     steps:
     - name: Checkout branch
@@ -36,10 +39,9 @@ jobs:
       run: dotnet build --configuration Release --no-restore Natus.Logging.Service\
 
     - name: Build Setup
-      run: |
-        candle.exe Product.wxs -o obj\ -ext WixUtilExtension -ext WixUIExtension
-        light.exe obj\*.wixobj -o bin\Installer.msi -ext WixUtilExtension -ext WixUIExtension -dWixUILicenseRtf="License.rtf"
-              
+      run: ls
+           candle.exe -v -ext WixUtilExtension -ext WixUIExtension %wixprojdir%/*.wxs -out %wixprojdir%\
+           light.exe %wixprojdir%\*.wixobj -o %wixprojdir%\Installer.msi -ext WixUtilExtension -ext WixUIExtension 
     # - name: Publish files
     #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
     # - name: Upload Build Artifact
