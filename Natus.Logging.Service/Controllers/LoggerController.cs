@@ -14,7 +14,6 @@ namespace Natus.Logging.Service.Controllers
     public class LoggerController : ControllerBase
     {
         private readonly ILogger<LoggerController> _logger;
-        private readonly IConfiguration _config;
 
         public LoggerController(ILogger<LoggerController> logger)
         {
