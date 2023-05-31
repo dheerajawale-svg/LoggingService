@@ -16,18 +16,25 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+  
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.3
+
+    - name: Setup NuGet.exe for use with actions
+      uses: NuGet/setup-nuget@v1.2.0
+
     - name: Restore Packages/Dependencies
       run: |
           dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
-          dotnet restore UnitTest\UnitTest.csproj
+          dotnet restore ServiceSetupProject\ServiceSetupProject.wixproj
+    
     - name: Build Projects
       run: |
           dotnet build --configuration Release --no-restore Natus.Logging.Service\
-          dotnet build --configuration Release --no-restore UnitTest\
-    - name: Test Project
-      run: dotnet test UnitTest\UnitTest.csproj
+          dotnet build --configuration Release --no-restore ServiceSetupProject\
+
     - name: Publish files
-      run: dotnet publish Natus.Logging.Service\Natus.Logging.Service.csproj -c Release -o release -nologo
+      run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v3
       with:
