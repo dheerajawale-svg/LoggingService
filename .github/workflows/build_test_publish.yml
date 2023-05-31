@@ -42,8 +42,13 @@ jobs:
     needs: build
     permissions:
       id-token: write # This is required for requesting the JWT
-      contents: read  # This is required for actions/checkout
-      issues: 'write'
+      contents: write  # This is required for actions/checkout
+      issues: write
+      packages: write
+      repository-projects: write
+      deployments: write
+      actions: write
+      checks: write
     
     steps:
       - name: Download Artifacts
@@ -62,10 +67,6 @@ jobs:
         with:
           tag_name: ${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
           # draft: false
           # prerelease: false
       # - name: Upload Release Asset
