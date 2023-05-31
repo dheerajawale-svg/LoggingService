@@ -30,15 +30,14 @@ jobs:
     - name: Restore Packages/Dependencies
       run: |
           dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
-          nuget restore ServiceSetupProject\ServiceSetupProject.wixproj
     
     - name: Build Service
       run: dotnet build --configuration Release --no-restore Natus.Logging.Service\
 
     - name: Build Setup
       run: |
-        candle.exe Product.wxs -o obj\ -ext WixUtilExtension -ext WixUIExtension
-        light.exe obj\*.wixobj -o bin\Installer.msi -ext WixUtilExtension -ext WixUIExtension -dWixUILicenseRtf="License.rtf"
+        candle.exe ${{ github.workspace }}\ServiceSetupProject\*.wxs -o obj\ -ext WixUtilExtension -ext WixUIExtension
+        light.exe ${{ github.workspace }}\ServiceSetupProject\obj\*.wixobj -o bin\Installer.msi -ext WixUtilExtension -ext WixUIExtension -dWixUILicenseRtf="License.rtf"
               
     # - name: Publish files
     #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
