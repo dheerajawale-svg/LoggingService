@@ -7,18 +7,29 @@ on: workflow_dispatch
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
+    - name: Checkout branch
+      uses: actions/checkout@v3
+    - name: Setup DotNET6.0
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Restore Packages/Dependencies
+      run: |
+          dotnet restore Natus.Logging.Service\Natus.Logging.Service.csproj
+          dotnet restore UnitTest\UnitTest.csproj
+    - name: Build Projects
+      run: |
+          dotnet build --configuration Release --no-restore Natus.Logging.Service\
+          dotnet build --configuration Release --no-restore UnitTest\
+    - name: Test Project
+      run: dotnet test UnitTest\UnitTest.csproj
+    - name: Publish files
+      run: dotnet publish Natus.Logging.Service\Natus.Logging.Service.csproj -c Release -o release -nologo
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Logging_Service
+        path: D:\a\LoggingService\LoggingService\release\
