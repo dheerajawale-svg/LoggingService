@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="NatusLoggingAPI" 
+	<?define BuildVersion = "1.0" ?>
+	<?define ProjectDir = "$(env.wixprojdir)" ?>
+
+	<!-- Give product a unique Id per platform -->
+	<?define ProductCode = "{FB4BD12A-97A8-43C7-ADFA-9E4B7F76F903}"?>
+
+	<!-- Fixed upgrade Id -->
+	<?define UpgradeCode = "{97A3201C-B63E-4A40-9DB6-2DEBAFF7FE8F}" ?>
+
+	<Product Id="$(var.ProductCode)"
+			 Name="!(loc.ProductName_x86)"
+			 Language="!(loc.Language)"
+			 Version="$(var.BuildVersion)"
+			 Manufacturer="!(loc.Company)"
+			 UpgradeCode="$(var.UpgradeCode)">
+
+		<Package InstallerVersion="200"
+				 Compressed="yes"
+				 InstallScope="perMachine"
+				 Platform="x86"
+				 Manufacturer="!(loc.Company)"
+				 Description="!(loc.Description)"
+				 Keywords="!(loc.Keywords)"
+				 Comments="!(loc.Comments)"
+				 Languages="!(loc.Language)"/>
+
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
+		
+		<MediaTemplate EmbedCab="yes" />
+
+		<!-- Help/Support website (shows in the Add/Remove programs) -->
+		<Property Id="ARPURLINFOABOUT">https://natus.com/</Property>
+
+		<!-- Create a basic UI for the installer -->
+		<UIRef Id="WixUI_Minimal" />
+
+		<!-- Change the installer GUI background images -->
+		<WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\Assets\License.rtf"/>
+
+		<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\natus_bg.bmp"/>
+		<WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Assets\natus_banner.bmp"/>
+
+		<!-- Define components, shortcuts, files etc... for installer -->
+		<Feature Id="ProductFeature" Title="LicensingInstaller" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="NatusLoggingService" />
+		</Feature>
+
+		<InstallExecuteSequence>
+			<Custom Action="InstallService" After="InstallFiles">(NOT Installed) AND (NOT REMOVE)</Custom>
+			<Custom Action="StartService" After="InstallService">NOT Installed</Custom>
+			<Custom Action="UninstallService" After="InstallInitialize" >(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")</Custom>
+		</InstallExecuteSequence>
+
+		<CustomAction Id="InstallService" Return="check" Impersonate="no" 
+					  Execute="deferred" Directory="INSTALLFOLDER"
+					  ExeCommand="SC CREATE &quot;!(loc.ServiceName)&quot; binPath=&quot;[INSTALLFOLDER]Natus.Logging.Service.exe&quot;" />
+		<CustomAction Id="StartService" Return="check" Impersonate="no" 
+					  Execute="deferred" Directory="INSTALLFOLDER"
+					  ExeCommand="SC START &quot;!(loc.ServiceName)&quot; binPath=&quot;[INSTALLFOLDER]Natus.Logging.Service.exe&quot;" />
+		<CustomAction Id="UninstallService" Return="check" Impersonate="no" 
+					  Execute="deferred" Directory="INSTALLFOLDER"
+					  ExeCommand="SC DELETE &quot;!(loc.ServiceName)&quot;" />
+	</Product>
+	
+	<!--<Product Id="*" Name="NatusLoggingAPI" 
 			 Language="1033" Version="1.0.0.0" 
 			 Manufacturer="Natus" UpgradeCode="bc6dbc1b-5622-4ffe-97f9-7129b4e5bdc3">
 		<Package InstallerVersion="200" 
@@ -11,13 +76,13 @@
 		<MediaTemplate />
 
 		<Feature Id="ProductFeature" Title="NatusLoggingAPI" Level="1">
-			<!-- heat references -->
+			--><!-- heat references --><!--
 			<ComponentGroupRef Id="NatusLoggingService" />
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
-	</Product>
+	</Product>-->
 
-	<Fragment>
+	<!--<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
 				<Directory Id="INSTALLFOLDER" Name="NatusLoggingAPI" />
@@ -27,9 +92,9 @@
 
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			--><!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. --><!--
 			 <Component Id="ProductComponent"> 
-				 <!--TODO: Insert files, registry keys, and other resources here.-->
+				 --><!--TODO: Insert files, registry keys, and other resources here.--><!--
 				 <File Id="LoggingServiceEXE"
 					   Name="Natus.Logging.Service.exe"
 					   DiskId="1"
@@ -59,5 +124,5 @@
 								 Wait="yes" />
 			 </Component>
 		</ComponentGroup>
-	</Fragment>
+	</Fragment>-->
 </Wix>

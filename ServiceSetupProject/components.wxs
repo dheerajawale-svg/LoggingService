@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<?define BuildVersion = "1.0" ?>
+
+		<!-- Product Components -->
+		<ComponentGroup Id="ProductComponents" >
+			<!-- Shortcut -->
+			<!--<ComponentRef Id="MainAppShortcut" />-->
+		</ComponentGroup>
+
+		<DirectoryRef Id="INSTALLFOLDER" FileSource="$(env.WIX_PUBLISH_DIR)">
+			<Component Id="MainAppShortcut" Guid="{2FD28603-4193-4B37-BCA8-88EB265E22DC}">
+				<RegistryValue Id="RegShortcutKey"
+							   Root="HKCU"
+							   Key="SOFTWARE\!(loc.ProductNameFolder)"
+							   Name="Shortcut"
+							   Value="1"
+							   Type="integer"
+							   KeyPath="yes" />
+				<RemoveFolder Id="RemoveStartMenu" 
+							  Directory="InstallProgramMenuFolder" 
+							  On="uninstall"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+</Wix>
