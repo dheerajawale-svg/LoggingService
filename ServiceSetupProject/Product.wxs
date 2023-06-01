@@ -44,7 +44,7 @@
 		<!-- Change the installer GUI background images -->
 		<WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\Assets\License.rtf"/>
 
-		<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\natus_bg.bmp"/>
+		<!--<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\natus_bg.bmp"/>-->
 		<WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Assets\natus_banner.bmp"/>
 
 		<!-- Define components, shortcuts, files etc... for installer -->

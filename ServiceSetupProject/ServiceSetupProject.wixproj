@@ -44,9 +44,10 @@
     <Folder Include="Assets" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\icon.ico" />
     <Content Include="Assets\License.rtf" />
     <Content Include="Assets\natus_banner.bmp" />
-    <Content Include="Assets\natus_bg.bmp" />
+    <Content Include="Assets\natus_logo.ico" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
