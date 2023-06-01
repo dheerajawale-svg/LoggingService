@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestClientWrapper", "Un
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggingTester", "LoggingTester\LoggingTester.csproj", "{5B6FCFF3-9684-4C48-B45B-311AE69C6E19}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "ServiceSetupProject", "ServiceSetupProject\ServiceSetupProject.wixproj", "{CA165D1D-BBF1-4475-A995-2B89835E74BA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,14 +71,6 @@ Global
 		{5B6FCFF3-9684-4C48-B45B-311AE69C6E19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5B6FCFF3-9684-4C48-B45B-311AE69C6E19}.Release|x86.ActiveCfg = Release|Any CPU
 		{5B6FCFF3-9684-4C48-B45B-311AE69C6E19}.Release|x86.Build.0 = Release|Any CPU
-		{CA165D1D-BBF1-4475-A995-2B89835E74BA}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{CA165D1D-BBF1-4475-A995-2B89835E74BA}.Debug|Any CPU.Build.0 = Debug|x86
-		{CA165D1D-BBF1-4475-A995-2B89835E74BA}.Debug|x86.ActiveCfg = Debug|x86
-		{CA165D1D-BBF1-4475-A995-2B89835E74BA}.Debug|x86.Build.0 = Debug|x86
-		{CA165D1D-BBF1-4475-A995-2B89835E74BA}.Release|Any CPU.ActiveCfg = Release|x86
-		{CA165D1D-BBF1-4475-A995-2B89835E74BA}.Release|Any CPU.Build.0 = Release|x86
-		{CA165D1D-BBF1-4475-A995-2B89835E74BA}.Release|x86.ActiveCfg = Release|x86
-		{CA165D1D-BBF1-4475-A995-2B89835E74BA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
