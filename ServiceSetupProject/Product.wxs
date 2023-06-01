@@ -31,7 +31,7 @@
 		<MediaTemplate EmbedCab="yes" />
 
 		<!-- Define main app icon -->
-		<Icon Id="icon.ico" SourceFile="$(var.ProjectDir)\images\icon.ico"/>
+		<Icon Id="icon.ico" SourceFile="$(var.ProjectDir)\Assets\icon.ico"/>
 		<!-- Use the icon.ico icon for this installer (show up in Add/Remove program) -->
 		<Property Id="ARPPRODUCTICON">icon.ico</Property>
 		
