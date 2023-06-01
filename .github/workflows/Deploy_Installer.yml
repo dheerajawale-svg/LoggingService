@@ -24,9 +24,6 @@ jobs:
     - name: Print Dir
       run: echo ${{ github.workspace }}
 
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.3
-
     - name: Set path for candle and light
       run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
       shell: bash
