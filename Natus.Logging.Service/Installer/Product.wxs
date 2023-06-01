@@ -54,10 +54,10 @@
 		</Feature>
 
 		<InstallExecuteSequence>
+			<ScheduleReboot After="InstallFinalize">REMOVE</ScheduleReboot>
 			<Custom Action="InstallService" After="InstallFiles">(NOT Installed) AND (NOT REMOVE)</Custom>
 			<Custom Action="StartService" After="InstallService">NOT Installed</Custom>
-			<Custom Action="UninstallService" After="InstallInitialize" >(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")</Custom>
-			<ScheduleReboot After="InstallFinalize">REMOVE='ALL'</ScheduleReboot>
+			<Custom Action="UninstallService" After="InstallInitialize" >(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")</Custom>			
 		</InstallExecuteSequence>
 
 		<CustomAction Id="InstallService" Return="check" Impersonate="no" 
