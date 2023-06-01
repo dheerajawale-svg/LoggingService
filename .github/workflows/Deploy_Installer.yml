@@ -56,15 +56,11 @@ jobs:
       run: |
            heat.exe dir /lic_publish -g1 -gg -sfrag -srd -dr INSTALLFOLDER -cg NatusLoggingService -o ${{ github.workspace }}\ServiceSetupProject\ComponentsGenerated.wxs -var "env.WIX_PUBLISH_DIR"
            candle.exe -v -ext WixUIExtension %wixprojdir%/*.wxs -out %wixprojdir%\
-           light.exe -out %wixprojdir%/Installer123.msi %wixprojdir%\*.wixobj -ext WixUIExtension -cultures:en-us -loc %wixprojdir%/common.wxl
+           light.exe -out %wixprojdir%/${{ env.MSI_FILE_NAME }}.msi %wixprojdir%\*.wixobj -ext WixUIExtension -cultures:en-us -loc %wixprojdir%/common.wxl
       shell: cmd
-
-
-
-    # - name: Publish files
-    #   run: dotnet publish ServiceSetupProject\ServiceSetupProject.wixproj -c Release -o release -nologo
-    # - name: Upload Build Artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: Logging_Service
-    #     path: D:\a\LoggingService\LoggingService\release\
+    - name: Upload Installer
+      uses: actions/upload-artifact@v3
+      with:
+        name: Logging_Service
+        path: ${{ env.wixprojdir }}/${{ env.MSI_FILE_NAME }}.msi
+        if-no-files-found: error
