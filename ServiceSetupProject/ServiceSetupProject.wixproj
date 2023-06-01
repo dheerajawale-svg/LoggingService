@@ -23,7 +23,6 @@
     <SuppressValidation>True</SuppressValidation>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="components.wxs" />
     <Compile Include="Directories.wxs" />
     <Compile Include="ComponentsGenerated.wxs" />
     <Compile Include="Product.wxs" />

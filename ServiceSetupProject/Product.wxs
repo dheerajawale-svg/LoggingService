@@ -44,7 +44,7 @@
 
 		<!-- Define components, shortcuts, files etc... for installer -->
 		<Feature Id="ProductFeature" Title="LicensingInstaller" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
+			<!--<ComponentGroupRef Id="ProductComponents" />-->
 			<ComponentGroupRef Id="NatusLoggingService" />
 		</Feature>
 
