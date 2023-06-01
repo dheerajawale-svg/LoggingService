@@ -30,6 +30,11 @@
 		
 		<MediaTemplate EmbedCab="yes" />
 
+		<!-- Define main app icon -->
+		<Icon Id="icon.ico" SourceFile="$(var.ProjectDir)\images\icon.ico"/>
+		<!-- Use the icon.ico icon for this installer (show up in Add/Remove program) -->
+		<Property Id="ARPPRODUCTICON">icon.ico</Property>
+		
 		<!-- Help/Support website (shows in the Add/Remove programs) -->
 		<Property Id="ARPURLINFOABOUT">https://natus.com/</Property>
 
