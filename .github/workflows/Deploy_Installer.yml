@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-latest
     env:
       WIX_PUBLISH_DIR: /lic_publish
-      wixprojdir: ${{ github.workspace }}\ServiceSetupProject
+      wixprojdir: ${{ github.workspace }}\Natus.Logging.Service\Installer
 
     steps:
     - name: Checkout branch
@@ -54,7 +54,7 @@ jobs:
 
     - name: Create MSI Setup
       run: |
-           heat.exe dir /lic_publish -g1 -gg -sfrag -srd -dr INSTALLFOLDER -cg NatusLoggingService -o ${{ github.workspace }}\ServiceSetupProject\ComponentsGenerated.wxs -var "env.WIX_PUBLISH_DIR"
+           heat.exe dir /lic_publish -g1 -gg -sfrag -srd -dr INSTALLFOLDER -cg NatusLoggingService -o ${{ github.workspace }}\Natus.Logging.Service\Installer\ComponentsGenerated.wxs -var "env.WIX_PUBLISH_DIR"
            candle.exe -v -ext WixUIExtension %wixprojdir%/*.wxs -out %wixprojdir%\
            light.exe -out %wixprojdir%/${{ env.MSI_FILE_NAME }}.msi %wixprojdir%\*.wixobj -ext WixUIExtension -cultures:en-us -loc %wixprojdir%/common.wxl
       shell: cmd
